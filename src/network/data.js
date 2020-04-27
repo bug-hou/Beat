@@ -1,7 +1,7 @@
-{
+export default {
     "info": {
       "name": "嘉禾一品（温都水城）",
-      "description": "硅谷专送",
+      "description": "BUG专送",
       "deliveryTime": 28,
       "score": 4.2,
       "serviceScore": 4.1,
