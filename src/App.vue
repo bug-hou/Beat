@@ -1,9 +1,8 @@
 <template>
   <div id="app">
-    <keep-alive>
+    <keep-alive exclude="explain,detail,ding,denglu,change,establish,profile">
   <router-view></router-view>
     </keep-alive>
-
     <butvar></butvar>
   </div>
 </template>

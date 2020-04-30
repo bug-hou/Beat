@@ -40,7 +40,6 @@ export default {
     this.shop.push(this.shoplist);
     this.shop.push(this.shoplist);
     this.shop.push(this.shoplist);
-    console.log(data);
   },
   computed: {},
 

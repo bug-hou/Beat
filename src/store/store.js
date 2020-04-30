@@ -6,10 +6,12 @@ Vue.use(Vuex);
 const carstore = new Vuex.Store({
     state:{
         client:{
-            goods:{}
+            goods:[]
         },
         clients:[],
-        nowClient:{},
+        nowClient:{
+            goods:[]
+        },
         data:[]
     },
     getters:{
@@ -19,7 +21,7 @@ const carstore = new Vuex.Store({
         add(state,ite){
                let judge = true
               state.clients.forEach((item)=>{
-                  if(item.name===ite.name){
+                  if(item.id===ite.id){
                       if(item.pwd===ite.pwd){
                        judge = false;
                        state.nowClient = item
@@ -36,12 +38,44 @@ const carstore = new Vuex.Store({
         dataAdd(state,item){
             let judge = true
             state.data.forEach((it)=>{
-                if(it.info.name = item.info.name){
+                if(it.info.id === item.info.id){
                       judge = false;
                 }
             })
             if(judge)
             state.data.push(item);
+        },
+        addgoods(state,ite){
+            let judge = true;
+            state.nowClient.goods.forEach(it=>{
+                if(it.name == ite.name){
+                   it.count = ite.count;
+                   judge = false;
+                }
+                console.log(ite.name);
+            })
+            if(judge){
+                state.nowClient.goods.push(ite);
+            }
+        },
+        popgoods(state,item){
+            state.nowClient.goods.forEach((it,index)=>{
+                if(it.name === item.name){
+                    if(it.count>0){
+                        it.count = item.count;
+                    }else{
+                        state.nowClient.goods.splice(index,1);
+                    }
+                }
+            })
+        },
+        leave(state){
+            state.clients.forEach(item=>{
+                if(item.id===state.nowClient.id){
+                    item = state.nowClient;
+                    state.nowClient = {}
+                }
+            })
         }
     }
 })

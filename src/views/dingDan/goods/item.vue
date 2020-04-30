@@ -23,13 +23,13 @@
 export default {
   data () {
     return {
-        count : 0,
     };
   },
     props:{
         item:{default(){
             return {}
         }},
+        count : 0,
     },
   components: {},
 
@@ -39,40 +39,29 @@ export default {
 
   methods: {
       dian(e){
-                if(e.target===this.$refs.jian){
-                    if(!this.$store.state.nowClient.id){
-                        this.$router.push("/dengLu")
-                    }else
-                    if(this.count>0){
-                    this.$store.
-                    this.$bus.$emit("jian",this.item.price)
-                    this.$store.commit("popgoods",{
-                        item:this.item,
-                        count:this.count,
-                        name : this.item.name
-                    });
-                    this.count--;
+            if(e.target===this.$refs.jian){
+                if(this.count>0){
+                    this.$emit("jian")
+                    // this.$store.commit("popgoods",{
+                    //     item:this.item,
+                    //     count:this.count--,
+                    //     name : this.item.name
+                    // });
                 }
-                }else if(e.target===this.$refs.jia){
-                    if(!this.$store.state.nowClient.id){
-                        this.$router.push("/dengLu")
-                    }else{
-                       this.$bus.$emit("jia",this.item.price)
-                    console.log(this.item.price)
-                    this.count++;
-                    this.$store.commit("addgoods",{
-                        item:this.item,
-                        count:this.count,
-                        name:this.item.name
-                    });
+            }else if(e.target===this.$refs.jia){
+                    this.$emit("jia")
+                    // this.$store.commit("addgoods",{
+                    //     item:this.item,
+                    //     count:this.count++,
+                    //     name:this.item.name
+                    // });
+            }else{
+                this.$router.push({
+                    path:"/explain",
+                    query:{
+                        item:this.item
                     }
-                }else{
-                    this.$router.push({
-                        path:"/explain",
-                        query:{
-                            item:this.item
-                        }
-                })
+            })
             }
         // }
       }
@@ -83,9 +72,11 @@ export default {
 <style scoped>
 @import url(//at.alicdn.com/t/font_1779557_2d09zwz1dpe.css);
 .box{
-    width: 100%;
+    width: 90%;
     height: 80px;
+    margin: 0 auto;
     display: flex;
+    background: white;
 }
 .img{
     width: 80px;

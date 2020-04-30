@@ -5,10 +5,10 @@
            BUG外卖
        </div>
        <div class="id" title="请输入数字" :class="{error:iderr}">
-           <input type="text" placeholder="账号" @input="id">
+           <input type="text" placeholder="账号" v-model="iid">
        </div>
        <div class="pwd" title="请输入字母或数字" :class="{error:pwderr}">
-           <input :type="type" placeholder="密码" @input="pwd">
+           <input :type="type" placeholder="密码" v-model="ppwd">
            <div @click="change" class="iconfont icon-chakanmima1"></div>
        </div>
        <div class="login">
@@ -48,12 +48,14 @@ export default {
           if(reg1.test(this.iid)){
               this.iderr = false;
               if(reg2.test(this.ppwd)){
+                  this.$store.commit("leave")
                   this.pwderr = false
                   this.client.id = this.iid;
                   this.client.pwd = this.ppwd;
                   this.client.name = "小侯";
                   this.client.price = 0;
                   this.client.address = "";
+                  this.client.goods = [];
                   this.$store.commit("add",this.client);
                   this.$router.push({
                       path:"/profile"
@@ -65,16 +67,9 @@ export default {
               this.iderr = true;
           }
       },
-      id(item){
-          this.iid += item.data
-      },
-      pwd(item){
-          this.ppwd += item.data
-      },
       change(){
           if(this.index++===0){
               this.type = "text"
-              console.log(this.type)
           }else{
               this.index = 0
               this.type = "password"

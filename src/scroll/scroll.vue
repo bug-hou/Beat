@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import scroll from "better-scroll"
+import BScroll from "better-scroll"
 export default {
   data () {
     return {
@@ -21,17 +21,14 @@ export default {
   computed: {},
 
   mounted(){
-   this.scroll = new scroll(this.$refs.swapper,{
-         pullUpLoad:true,
+     this.scroll = new BScroll(this.$refs.swapper,{
+        //  pullUpLoad:true,
          click:true,
          probeType:3
      })
-    //  this.scroll.on("scroll",position=>{
-    //        this.$emit("scrolly",position.y);
-    //  })
-    //   this.scroll.on("pullingUp",()=>{
-    //            this.$emit("fush")
-    //   });
+     this.scroll.on("scroll",position=>{
+           this.$emit("Bscrolly",position.y);
+     })
   },
 
   methods: {}

@@ -42,6 +42,7 @@ export default {
   methods: {
     change(index){
       this.index = index;
+      this.$bus.$emit("change",index);
     },
     huan(){
       this.isShow = !this.isShow
@@ -53,7 +54,6 @@ export default {
 <style scoped>
 @import url(//at.alicdn.com/t/font_1779557_vomrs77i7z8.css);
 #swiper{
-  margin-top: 44px;
   width: 100%;
   height: 180px;
   background: black;

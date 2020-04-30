@@ -14,6 +14,7 @@ import topvar from '../../components/common/topvar/topvar'
 
 import dMain from './main'
 export default {
+  name:"denglu",
   data () {
     return {
         fan:"<"
