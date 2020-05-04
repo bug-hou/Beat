@@ -1,12 +1,10 @@
 import axios from 'axios';
-export function jsonp(data,res){
-    axios.jsonp = () => {
+export function jsonp(data){
     const url = `https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=1427,21112,31424,31342,30905
         ,31463,31228,30823,31163,31471&wd=${data}&req=2&csor=2&pwd=1&cb=search`
-    new Promise((resolve,reject) => {
+    return new Promise((resolve,reject) => {
         window.search =(result) => {
             resolve(result)
-            res(result);
         }
         var JSONP=document.createElement("script");
         JSONP.type="text/javascript";
@@ -17,4 +15,14 @@ export function jsonp(data,res){
         },500)
     })
 }
+export function get(data){
+    const instrall = axios.create({
+        baseURL:"http://i.meituan.com/s/suggest.json",
+        timeout:5000
+    })
+    return instrall({
+        params:{
+            keyword:data
+        }
+    })
 }

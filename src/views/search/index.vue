@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {jsonp} from '../../network/search/search'
+import {jsonp,get} from '../../network/search/search'
 export default {
   data () {
     return {
@@ -19,10 +19,12 @@ export default {
   computed: {},
 
   mounted(){
-     jsonp(this.data,res=>{
-       console.log("1111")
-           console.log(res)
+     jsonp(this.data).then(res=>{
+       console.log(res)
      })
+    //  get(this.data).then(res=>{
+    //    console.log(res)
+    //  })
     //  console.log(jsonp)
   },
 
